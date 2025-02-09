@@ -91,6 +91,7 @@ const Museums = () => {
             transition: "transform 0.3s, box-shadow 0.3s",
             position: "relative",
             maxWidth: "300px",
+            height:"550px",
             margin: "auto"
           }}>
             <span style={{

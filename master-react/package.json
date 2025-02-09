@@ -1,13 +1,21 @@
+
+
 {
   "name": "master-react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://halaabushehab.github.io/repository-Master-React"
+
+  ,
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+      "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -15,7 +23,6 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/vite": "^4.0.5",
     "aos": "^2.3.4",
-    "bootstrap": "^5.3.3",
     "boxicons": "^2.1.4",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",

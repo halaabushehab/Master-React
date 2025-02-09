@@ -47,8 +47,8 @@
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "./Navbar";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from "./Navbar.jsx";
 import Footer from "./Footer";
 import Home from "./components/pages/Home";
 import Places from "./components/pages/places/Places.jsx";
@@ -56,10 +56,10 @@ import Amman from "./components/pages/places/Amman.jsx";
 import Zarqa from "./components/pages/places/Zarqa";
 import Irbid from "./components/pages/places/Irbid";
 import Museums from "./components/pages/places/Museums.jsx"; // ✅ استيراد صفحة المتاحف
-// import PlaceDetails from "./components/pages/places/PlaceDetails .jsx"; // ✅ استيراد صفحة التفاصيل العامة
+import PlogDetails from "../src/components/pages/PlogDetails.jsx"; // ✅ استيراد صفحة التفاصيل العامة
 import Blog from "../src/components/pages/Blog.jsx";
-// import About from "./components/pages/About";
-// import Contact from "./components/pages/Contact";
+import About from "./components/pages/About.jsx";
+import Contact from "./components/pages/Contact";
 // import SportsClubs from "./SportsClubs";
 // import Restaurants from "./Restaurants";
 // import Entertainment from "./Entertainment";
@@ -80,8 +80,12 @@ const App = () => {
           <Route path="/places/zarqa" element={<Zarqa />} />
           <Route path="/places/irbid" element={<Irbid />} />
           <Route path="/Museums" element={<Museums />} /> {/* ✅ إضافة صفحة المتاحف */}
-          <Route path="/blog" element={<Blog />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/Blog" element={<Blog />} />
+          <Route path="/PlogDetails" element={<PlogDetails />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          
+          
           
           {/* <Route path="/places/sports-clubs" element={<SportsClubs />} />
         <Route path="/places/restaurants" element={<Restaurants />} />

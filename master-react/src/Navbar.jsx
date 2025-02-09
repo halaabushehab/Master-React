@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import articleImage from '../src/components/img/Screenshot 2025-01-24 235121.png'; // استبدل بالاسم الصحيح للصورة
-const Navbar = () => {1
+import React from "react";
+
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // إضافة حالة لقائمة المدن
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,139 +19,92 @@ const Navbar = () => {1
   return (
     <header
       dir="rtl"
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-
-        zIndex: 1000,
-        transition: "background-color 0.3s ease-in-out",
-        backgroundColor: isScrolled ? "rgba(2, 44, 67, 0.7)" : "#022C43",
-        padding: "0px 0",
-        opacity: "0.8",
-      }}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-[#022C43]/70" : "bg-[#022C43]"
+      } opacity-80`}
     >
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-dark">
-        <Link className="navbar-brand" to="/">
-        <img
-  src={articleImage} // تأكد من أن هذا السطر غير مفعل
-  className="img-fluid"
-  alt="صورة مقالات"
-  style={{ objectFit: "cover", height: "50px" }}
-/>
-     </Link>
+      <div className="container mx-auto px-4">
+        <nav className="flex items-center justify-between py-3">
+          {/* Logo */}
+          <Link to="/">
+            <img
+              src="/your-logo.png" // استبدل باسم الصورة الحقيقي
+              className="h-12 object-cover"
+              alt="صورة مقالات"
+            />
+          </Link>
+
+          {/* زر القائمة للجوال */}
           <button
-            className="navbar-toggler"
-            type="button"
+            className="lg:hidden text-white"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="text-2xl">&#9776;</span>
           </button>
 
+          {/* القائمة */}
           <div
-            className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
-            id="navbarNav"
+            className={`lg:flex flex-col lg:flex-row items-center gap-6 lg:gap-8 text-center absolute lg:relative bg-[#022C43] lg:bg-transparent w-full lg:w-auto transition-all duration-300 ${
+              menuOpen ? "top-16 right-0 p-4 shadow-lg" : "hidden lg:flex"
+            }`}
           >
-            <ul
-              className="navbar-nav mx-auto text-center"
-              style={{ gap: "20px" }}
-            >
-              <li className="nav-item">
-                <Link className="nav-link" to="/" style={{ color: "#FFD700" }}>
-                  الصفحة الرئيسية
-                </Link>
-              </li>
+            <Link className="text-[#FFD700] hover:text-white" to="/">
+              الصفحة الرئيسية
+            </Link>
 
-              {/* القائمة المنسدلة للمدن */}
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  to="#"
-                  id="navbarDropdown"
-                  role="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(!isOpen);
-                  }}
-                  style={{ color: "white", cursor: "pointer" }}
-                >
-                  المدن
-                </Link>
-                <div
-                  className={`dropdown-menu ${isOpen ? "show" : ""}`}
-                  style={{ backgroundColor: "#115173" }}
-                  aria-labelledby="navbarDropdown"
-                >
-                  <Link className="dropdown-item" to="/places/amman" style={{ color: "#FFD700" }}>
-                    عمان
-                  </Link>
-                  <Link className="dropdown-item" to="/places/zarqa" style={{ color: "#FFD700" }}>
-                    الزرقاء
-                  </Link>
-                  <Link className="dropdown-item" to="/places/irbid" style={{ color: "#FFD700" }}>
-                    إربد
-                  </Link>
-                </div>
-              </li>
-
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/Blog"
-                  style={{ color: "white" }}
-                >
-                  المدونات
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/about"
-                  style={{ color: "white" }}
-                >
-                  من نحن
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/contact"
-                  style={{ color: "white" }}
-                >
-                  تواصل معنا
-                </Link>
-              </li>
-            </ul>
-            <div style={{ display: "flex", gap: "15px" }}>
-              <a
-                href="#"
-                className="btn btn-outline-light me-2"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  borderColor: "#FFD700",
-                  color: "#FFD700",
-                }}
+            {/* المدن - القائمة المنسدلة */}
+            <div className="relative">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-white hover:text-gray-300 cursor-pointer"
               >
+                المدن ▼
+              </button>
+              <div
+                className={`absolute right-0 mt-2 w-40 bg-[#115173] rounded shadow-lg transition-all duration-300 ${
+                  isOpen ? "block" : "hidden"
+                }`}
+              >
+                <Link className="block px-4 py-2 text-[#FFD700] hover:bg-[#0d3a5a]" to="/places/amman">
+                  عمان
+                </Link>
+                <Link className="block px-4 py-2 text-[#FFD700] hover:bg-[#0d3a5a]" to="/places/zarqa">
+                  الزرقاء
+                </Link>
+                <Link className="block px-4 py-2 text-[#FFD700] hover:bg-[#0d3a5a]" to="/places/irbid">
+                  إربد
+                </Link>
+              </div>
+            </div>
+
+            <Link className="text-white hover:text-gray-300" to="/Blog">
+              المدونات
+            </Link>
+            <Link className="text-white hover:text-gray-300" to="/About">
+              من نحن
+            </Link>
+            <Link className="text-white hover:text-gray-300" to="/contact">
+              تواصل معنا
+            </Link>
+
+            {/* أزرار البحث وتسجيل الدخول */}
+            <div className="flex gap-4 mt-4 lg:mt-0">
+              <button className="flex items-center gap-2 border border-[#FFD700] text-[#FFD700] px-4 py-2 rounded hover:bg-[#FFD700] hover:text-[#022C43] transition">
                 <i className="fa fa-search" aria-hidden="true" />
                 البحث
-              </a>
-              <a
-                href="#"
-                className="btn"
-                style={{ backgroundColor: "#FFD700", color: "#022C43" }}
+              </button>
+              <button
+                className="bg-[#FFD700] text-[#022C43] px-4 py-2 rounded hover:bg-[#e6c200] transition"
                 onClick={() => alert("Show Modal")}
               >
                 تسجيل الدخول / انشاء حساب
-              </a>
+              </button>
             </div>
           </div>
         </nav>
       </div>
     </header>
   );
-};
+}
 
 export default Navbar;
