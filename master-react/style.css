@@ -1,0 +1,27 @@
+:root {
+    --bg-color: #022C43;
+    --seconed-bg-color: #115173;
+    --main-color: #FFD700;
+    --text-color-one: #FFFFFF;
+    --font-family-titel: 'Tajawal', sans-serif;
+    --font-family-text: 'Noto Sans Arabic', sans-serif;
+  }
+  
+  .dorne-welcome-area {
+    background-color: var(--bg-color);
+    color: var(--text-color-one);
+    font-family: var(--font-family-titel);
+  }
+  
+  .hero-search-form {
+    margin-top: 20px;
+  }
+  
+  .btn.dorne-btn {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+  }
+  
+  .all-catagories {
+    margin-top: 40px;
+  }
